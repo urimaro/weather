@@ -30,6 +30,20 @@ defmodule Weather.CLI do
 
   def process({}) do
     Weather.NWSData.fetch()
+    |> decode_response
+    |> convert_to_documents
+  end
+
+  def decode_response({:ok, body}), do: body
+  def decode_response({:error, error}) do
+    IO.puts "Error occured during fetching from National Weather Service.\n#{error}"
+    System.halt(2)
+  end
+
+  def convert_to_documents(xml) do
+    xml
+    |> :binary.bin_to_list
+    |> :xmerl_scan.string
   end
 end
 
