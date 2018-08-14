@@ -17,8 +17,10 @@ defmodule Weather.XML do
 
   def extract_data({doc, _}, headers) do
     Enum.map(headers, fn header ->
-      [a] = :xmerl_xpath.string('//#{header}/text()', doc)
-      xmlText(a, :value)
+      [doc] = :xmerl_xpath.string('//#{header}/text()', doc)
+      doc
+      |> xmlText(:value)
+      |> to_string
     end)
   end
 end
