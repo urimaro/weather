@@ -3,7 +3,7 @@ defmodule Weather.XML do
 
   defrecord :xmlText, extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
 
-  def convert_to_map(xml, headers) do
+  def convert_to_data_list(xml, headers) do
     xml
     |> convert_to_documents
     |> extract_data(headers)
