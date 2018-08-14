@@ -11,8 +11,8 @@ defmodule Weather.NWSData do
     {:ok, body}
   end
 
-  def handle_response({:error, %{status_code: _, body: body}}) do
-    {:error, body}
+  def handle_response({:error, error}) do
+    {:error, HTTPoison.Error.message(error)}
   end
 end
 
