@@ -1,6 +1,7 @@
 defmodule Weather.CLI do
   import Record, only: [defrecord: 2, extract: 2]
   import Weather.XML, only: [convert_to_data_list: 2]
+  import Weather.TableFormatter, only: [print_table_for_data: 2]
 
   defrecord :xmlText, extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
 
@@ -39,6 +40,7 @@ defmodule Weather.CLI do
     Weather.NWSData.fetch()
     |> decode_response
     |> convert_to_data_list(@headers)
+    |> print_table_for_data(@headers)
   end
 
   def decode_response({:ok, body}), do: body
