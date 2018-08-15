@@ -7,7 +7,7 @@ defmodule Weather.CLI do
 
   @moduledoc """
   """
-  def run(argv) do
+  def main(argv) do
     argv
     |> parse_args()
     |> process

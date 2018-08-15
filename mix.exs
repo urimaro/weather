@@ -4,6 +4,7 @@ defmodule Weather.MixProject do
   def project do
     [
       app: :weather,
+      escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -25,5 +26,9 @@ defmodule Weather.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:httpoison, "~> 1.2.0"}
     ]
+  end
+
+  defp escript_config() do
+    [main_module: Weather.CLI]
   end
 end
